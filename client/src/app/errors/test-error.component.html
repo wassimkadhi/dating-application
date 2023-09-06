@@ -1,0 +1,19 @@
+<ng-container>
+
+    
+    <button class="btn btn-primary me-3" (click)="get404Eror()">404 not found</button>
+    <button class="btn btn-primary me-3" (click)="get400Eror()">400 eroor</button>
+    <button class="btn btn-primary me-3" (click)="get500Eror()">500 erro</button>
+    <button class="btn btn-primary me-3" (click)="get401Eror()">401 auth</button>
+    <button class="btn btn-primary me-3" (click)="getvalidationEror()">validation</button>
+
+    <div class ="row mt-5" *ngIf="validationErrors.length > 0 ">
+     <ul class ="text-danger">
+        <li *ngFor="let error of validationErrors">
+            {{error}}
+        </li>
+     </ul>
+
+
+    </div>
+</ng-container>

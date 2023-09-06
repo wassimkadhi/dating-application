@@ -1,4 +1,5 @@
 using System.Text;
+using API;
 using API.Data;
 using API.Interfaces;
 using API.Services;
@@ -37,6 +38,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddelware>() ; 
+
+
 
 // Configure the HTTP request pipeline.
 
