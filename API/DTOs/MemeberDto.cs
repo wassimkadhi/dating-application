@@ -1,16 +1,16 @@
-﻿namespace API.Entities;
+﻿namespace API;
 
-public class AppUser
+public class MemeberDto
 {
+
     public int Id { get; set; }
 
     public string UserName { get; set; }
 
-    public byte[] PasswordHash { get; set; }
+    public string  UrlPhoto { get; set; }
 
-    public byte[] PasswordSalt { get; set; }
-
-    public DateOnly DateOfBirth { get; set; }
+   
+    public int Age { get; set; }
 
     public string KnownAs { get; set; }
 
@@ -27,15 +27,8 @@ public class AppUser
 
     public string City { get; set; }
     public string Country { get; set; }
-    public List<Photo> Photos { get; set; } = new();
-
-
-    public int GetAge()
-    {
-        return DateOfBirth.CalculateAge();
-        
-    }
-
-
+    public List<PhotoDto> Photos { get; set; }
 
 }
+
+    
