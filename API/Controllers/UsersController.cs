@@ -40,6 +40,18 @@ public class UsersController : BaseApiController
        
     }
 
+/*
+ [HttpGet("{id}")]  //api/users/id
+
+    public async Task<ActionResult<MemeberDto>> GetUserById(int id)
+    {
+        var user = await _userRepository.GetUserByIdAsync(id) ; 
+        return _mapper.Map<MemeberDto>(user) ; 
+
+       
+    }
+    */
+
 
 
 

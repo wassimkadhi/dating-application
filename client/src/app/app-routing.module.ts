@@ -18,16 +18,15 @@ runGuardsAndResolvers:'always' ,
 canActivate:[authGuard] , 
 children :[
 {path:'members', component: MemberListComponent},
-{path:'members/:id' , component: MemberDetailComponent},
+{path:'members/details/:username' , component: MemberDetailComponent},
 {path:'lists', component: ListsComponent},
 {path:'messages', component: MessagesComponent},
 ]
 } ,
 {path:'not-found', component: NotFoundComponent },
 {path:'server-error', component: ServerErrorComponent },
-
 {path:'errors', component: TestErrorComponent },
-{path:'**' , component: HomeComponent,pathMatch:'full'} ,
+{path:'**' , component: NotFoundComponent,pathMatch:'full'} ,
 
   
 ];

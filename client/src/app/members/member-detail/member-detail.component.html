@@ -1,1 +1,62 @@
-<p>member-detail works!</p>
+
+
+<div class="row"  *ngIf="member">
+
+  <div class="col-4">
+      <div class="card">
+
+        <img   class="card-img-top img-thumbnail" src="{{member.urlPhoto|| './assets/user.png'}}" alt="wrong.">
+        <div class="card-body">
+          <h5 class="card-title">{{member.knownAs}}</h5>
+    
+           <strong> Age of </strong>
+           <p>{{member.age}}</p>
+
+           <strong> From  </strong>
+           <p>{{member.country}}</p>
+
+          <strong>member since :</strong>
+           <p>{{member.cretaed}}</p>
+       
+        </div>
+
+        <div class="card-footer">
+         
+          <div class="btn-group d-flex">
+            <button type="button" class="btn btn-primary">  <i class="fa fa-heart me-2" style="color: red;"></i>Like</button>
+            <button type="button" class="btn btn-success">  <i class="fa fa-envelope me-2"></i>Message</button>
+            
+          </div>
+          
+        </div>
+        
+          
+        </div>
+    
+      </div>
+    
+  
+
+  
+
+
+  <div class="col-8">
+    <tabset  class ="member-tabset">
+       <tab heading ="genarale Informations" >
+        <h4>Description</h4>
+        <p>{{member.introduction}}</p>
+        <h4>Looking For</h4>
+        <p>{{member.interests}}</p>
+      </tab>
+      <tab  heading ="Photos" #photo="tab"> 
+        <gallery  *ngIf="photo.active" [items]="images" class="gallery"></gallery>
+      </tab>
+
+      <tab  heading ="Messages" >fdsfd</tab>
+    </tabset>
+    
+  </div>
+  
+
+  
+</div>
