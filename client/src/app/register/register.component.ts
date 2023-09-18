@@ -5,33 +5,29 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent  implements OnInit{
-constructor( private accounstService :AccountService  , private toast :ToastrService){}
-  model :any ={}
-  @Input() usersfromhomecomponet :any ; 
-  @Output() cancelRegister =new EventEmitter()
-  
-  
-  ngOnInit(): void {
-    
+export class RegisterComponent implements OnInit {
+  constructor(
+    private accounstService: AccountService,
+    private toast: ToastrService
+  ) {}
+  model: any = {};
+  @Input() usersfromhomecomponet: any;
+  @Output() cancelRegister = new EventEmitter();
 
-}
+  ngOnInit(): void {}
 
-register(){
-  this.accounstService.register(this.model).subscribe(
-    {
-      next: ()=>{ 
-        this.cancel()},
-      error :error=>this.toast.error(error.error)
-    }
-  )
+  register() {
+    this.accounstService.register(this.model).subscribe({
+      next: () => {
+        this.cancel();
+      },
+      error: (error) => this.toast.error(error.error),
+    });
+  }
 
-
-}
-
-cancel() {
-  this.cancelRegister.emit(false) ; 
-}
+  cancel() {
+    this.cancelRegister.emit(false);
+  }
 }

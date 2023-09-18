@@ -13,9 +13,6 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-
-
-
     public async Task<AppUser> GetUserByUserNameAsync(string username)
     {
 

@@ -18,6 +18,7 @@
             <a class="nav-link " routerLink="/messages" routerLinkActive="active" >messages</a>
           </li>
 
+         
         </ng-container>
         <li class="nav-item">
           <a class="nav-link " routerLink="/errors" routerLinkActive="active" >errors</a>
@@ -30,7 +31,7 @@
         <div  *ngIf="(accountservice.currentUser$|async)as user"  class="dropdown" dropdown>
           <a class="dropdown-toggle text-light text-decoration-none " dropdownToggle> welcome {{user.username | titlecase}}</a>
           <div class="dropdown-menu" *dropdownMenu>
-            <a class="dropdown-item">Edit profil</a>
+            <a class="dropdown-item"  routerLink="/member/edit">Edit profil</a>
             <a class="dropdown-item" (click)="logout()">logout</a>
           </div>
 

@@ -1,8 +1,10 @@
-﻿using API.Entities;
+﻿using System.Security.Claims;
+using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SQLitePCL;
 
 
 namespace API.Controllers;
@@ -51,6 +53,21 @@ public class UsersController : BaseApiController
        
     }
     */
+    
+    [HttpPut ("EditMember/")]
+    public async Task<ActionResult> UapdateMember(MemberUpdateDto memberupdate) {
+
+        var username=User.FindFirst(ClaimTypes.NameIdentifier)?.Value ; 
+        var user = await _userRepository.GetUserByUserNameAsync(username) ; 
+
+        if(user==null) return NotFound() ; 
+        _mapper.Map(memberupdate , user)  ; 
+        if(await _userRepository.SaveAllAsync()) return NoContent() ; 
+        return BadRequest("update fail") ; 
+
+    
+    }
+
 
 
 
