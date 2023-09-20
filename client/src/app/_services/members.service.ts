@@ -35,6 +35,18 @@ export class MembersService {
     
    }
 
+
+   editMainPhoto(photoId :number ) {
+
+    return this.http.put(this.baseUrl+'users/edit-main-photo/'+ photoId ,{} ) ; 
+
+   }
+
+
+   deletePhotoById(photoId : number) {
+
+    return this.http.delete(this.baseUrl+'users/delete-photo/' + photoId) ; 
+   }
    
 
  

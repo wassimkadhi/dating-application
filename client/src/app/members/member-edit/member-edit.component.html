@@ -18,89 +18,111 @@
         <strong>member since :</strong>
         <p>{{ member.cretaed }}</p>
       </div>
-
-      
-      
-      
     </div>
   </div>
 
   <div class="col-8">
-    <div class="alert alert-danger" style="text-align: center" role="alert" *ngIf="editForm.dirty">
+    <div
+      class="alert alert-danger"
+      style="text-align: center"
+      role="alert"
+      *ngIf="editForm.dirty"
+    >
       please save changes before leaving
     </div>
-    <form  #editForm="ngForm"  (ngSubmit)="updateMember() ">
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label"
-          >Your Introduction</label
-        >
-        <div class="col-sm-10">
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            [(ngModel)]="member.introduction"
-            name="introduction"
-          ></textarea>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label"
-          >What are you looking for</label
-        >
-        <div class="col-sm-10">
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            [(ngModel)]="member.lookingFor"
-            name="lookingFor"
-          ></textarea>
-        </div>
-      </div>
 
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label"
-          >What are you interested about</label
-        >
-        <div class="col-sm-10">
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            [(ngModel)]="member.interests"
-            name="interests"
-          ></textarea>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">city</label>
-        <div class="col-md-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="City"
-            [(ngModel)]="member.city"
-            name="city"
-          />
-        </div>
-        <label for="inputEmail3" class="col-sm-2 col-form-label">country</label>
-        <div class="col-md-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="country"
-            [(ngModel)]="member.country"
-            name="country"
-          />
-        </div>
-      </div>
+    <div class="col">
+      <tabset class="member-tabset">
+        <tab heading="genarale Informations">
+          <form #editForm="ngForm" (ngSubmit)="updateMember()">
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >Your Introduction</label
+              >
+              <div class="col-sm-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  [(ngModel)]="member.introduction"
+                  name="introduction"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >What are you looking for</label
+              >
+              <div class="col-sm-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  [(ngModel)]="member.lookingFor"
+                  name="lookingFor"
+                ></textarea>
+              </div>
+            </div>
 
-      <div class="text-center">
-        <button type="submit" class="btn btn-danger me-4"  [disabled]="!editForm.dirty">  <i class="fa fa-save me-2"></i>save changes</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
-      </div>
-    </form>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >What are you interested about</label
+              >
+              <div class="col-sm-10">
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  [(ngModel)]="member.interests"
+                  name="interests"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >city</label
+              >
+              <div class="col-md-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  [(ngModel)]="member.city"
+                  name="city"
+                />
+              </div>
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >country</label
+              >
+              <div class="col-md-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="country"
+                  [(ngModel)]="member.country"
+                  name="country"
+                />
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-danger me-4"
+                [disabled]="!editForm.dirty"
+              >
+                <i class="fa fa-save me-2"></i>save changes
+              </button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+        </tab>
+        <tab heading="Photos" #photo="tab">
+          <app-photo-editor [member]="member"></app-photo-editor>
+        </tab>
+      </tabset>
+    </div>
+
     <!-- End Horizontal Form -->
   </div>
 </div>

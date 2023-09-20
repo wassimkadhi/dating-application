@@ -5,59 +5,48 @@ import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AccountService { 
-
-  baseUrl=environment.apiUrl
+export class AccountService {
+  baseUrl = environment.apiUrl;
 
   //to storage user information in an observables so aother componenet kwnow about ouer login status
-  private currentUserSource =new BehaviorSubject<User | null > (null) ;  
-  // we can use outsude the account service create  an observables 
-  currentUser$=this.currentUserSource.asObservable() ; 
+  private currentUserSource = new BehaviorSubject<User | null>(null);
+  // we can use outsude the account service create  an observables
+  currentUser$ = this.currentUserSource.asObservable();
 
+  constructor(private http: HttpClient) {}
 
-  constructor( private http:HttpClient) { }
-
-login(model:any){
-  return this.http.post<User>(this.baseUrl+'account/login',model).pipe(
-  
-    map ((response:User)=>{
-    const user= response ; 
-      if(user) {
-        localStorage.setItem('user', JSON.stringify(user)) ;
-        console.log("hii me again from req" +  user.username)
-        this.currentUserSource.next(user);
-        console.log(response);
-      }
-      return(user) ;
-
-    }
-  )
-  )
-}
-
-register(model:any){
-
-  return this.http.post<User>(this.baseUrl+'account/register' ,model).pipe(
-    map((response:User) =>{
-      if(response) {
-        localStorage.setItem('user', JSON.stringify(response)) ;
-        console.log('hi im comming from register' +response) ; 
-        this.currentUserSource.next(response) ; 
-      }
+  login(model: any) {
+    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+          this.setCurrentUser(user)
+        }
       
-    })
-  )
-}
+      })
+    );
+  }
 
-   setCurrentUser(user:User) {
+  register(model: any) {
+    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+      map((user) => {
+        if (user) {
+          this.setCurrentUser(user) ;
+        }
+      })
+    );
+  }
+
+  setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-   }
+    console.log(user) ;
+  }
 
-logout(){
-  localStorage.removeItem('user') ;  
-  this.currentUserSource.next(null);
-}
-
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+  }
 }
