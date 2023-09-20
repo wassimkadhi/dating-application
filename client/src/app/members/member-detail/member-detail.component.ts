@@ -23,7 +23,7 @@ export class MemberDetailComponent implements OnInit {
     private memberservice: MembersService
   ) {}
   ngOnInit(): void {
-    console.log(this.route);
+    
     this.route.params.subscribe((params) => {
       this.username = params['username'];
     });
