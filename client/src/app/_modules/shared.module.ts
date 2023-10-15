@@ -5,6 +5,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TimeagoModule } from 'ngx-timeago';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
 
 
 @NgModule({
@@ -15,8 +20,15 @@ import { FileUploadModule } from 'ng2-file-upload';
     ToastrModule.forRoot(),
     TabsModule.forRoot(),
     NgxSpinnerModule.forRoot({type:'pacman'}) ,
-    FileUploadModule
+    FileUploadModule, 
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    TimeagoModule.forRoot(),
+    ButtonsModule.forRoot(), 
+    
+    
+
   ],
-  exports: [BsDropdownModule, ToastrModule, TabsModule, NgxSpinnerModule ,FileUploadModule],
+  exports: [BsDropdownModule, ToastrModule, TabsModule, NgxSpinnerModule ,FileUploadModule , BsDatepickerModule,PaginationModule,TimeagoModule,ButtonsModule],
 })
 export class SharedModule {}

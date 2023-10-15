@@ -1,7 +1,7 @@
 
 <div class="card mb-4 " >
    <div class="card-img-wrapper">
-    <img   class="card-img-top" src={{member.urlPhoto}}  alt="..something wrong.">
+    <img   class="card-img-top" src="{{member.urlPhoto|| './assets/user.png'}}"  alt="..something wrong.">
        <ul class="list-inline member-icons animate text-center">
         <li class="list-inline-item">
         <button type="button" class="btn btn-primary me-2"  routerLink="details/{{member.userName}}"> <i class="fa fa-user"></i></button>
@@ -19,7 +19,7 @@
         <i class="fa fa-user me-2" ></i> 
         {{member.knownAs}}
         </h5>
-      <p class="card-text text-muted text-center"> {{member.country}}</p>
+      <p class="card-text text-muted text-center"> {{member.age}}</p>
       
     </div>
   </div>

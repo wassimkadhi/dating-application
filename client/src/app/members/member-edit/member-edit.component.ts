@@ -49,6 +49,7 @@ export class MemberEditComponent implements OnInit {
       next: (_) => {
         this.toaster.success('profile updatetd succefully');
         this.editForm.reset(this.member);
+        
       },
     });
   }

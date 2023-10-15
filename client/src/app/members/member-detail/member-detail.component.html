@@ -15,8 +15,11 @@
            <strong> From  </strong>
            <p>{{member.country}}</p>
 
+           <strong>Last active :</strong>
+           <p>{{member.lastActive+'z' | timeago }}</p>
+
           <strong>member since :</strong>
-           <p>{{member.cretaed}}</p>
+           <p>{{member.cretaed | date:'dd MMM YYYY'}}</p>
        
         </div>
 

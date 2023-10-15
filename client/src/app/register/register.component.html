@@ -1,65 +1,96 @@
-
 <section class="vh-100">
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-5">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            class="img-fluid" alt="Sample image">
-        </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form #loginForm="ngForm" (ngSubmit)="register()" autocomplete="off">
-            
-  
-            <div class="text-center">
-              <p class="text-center  fw-bold mx-3 mb-0">register</p>
-            </div>
-  
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email"
-              name="username"
-              [(ngModel)]="model.username"
-               id="form3Example3" 
-               class="form-control form-control-lg"
-                placeholder="Enter a valid email address" />
-              <label class="form-label" for="form3Example3">Email address</label>
-            </div>
-            <div class="form-outline mb-4">
-               
-                  <label>who is your favorte user ? </label> 
-                  <select class="form-select">
-                    <option *ngFor="let user of usersfromhomecomponet"  >
-                      {{user.userName}}
-                    </option>
-                  </select>
-                </div>
-                
-                
-            <!-- Password input -->
-            <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" 
-              name="password"
-              [(ngModel)]="model.password"
-              
-              class="form-control form-control-lg"
-                placeholder="Enter password" />
-              <label class="form-label" for="form3Example4">Password</label>
-            </div>
-  
-           
-  
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary btn-lg me-4"
-                >Register</button>
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-4">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+      <div class="col-8">
+        <form
+          [formGroup]="registerForm"
+          (ngSubmit)="register()"
+          autocomplete="off"
+        >
+          <div class="text-center mb-3">
+            <p class="text-center fw-bold mx-3 mb-0">register</p>
+          </div>
 
-                <button (click)="cancel()" class="btn btn-danger btn-lg"
-              >cancel</button>
-              
-            </div>
-  
-          </form>
+          <!-- username input -->
+          <app-text-input [formControl]="(registerForm.controls['username'])" 
+           [label]="'Username'">
+          </app-text-input>
+           <!-- pseudo input -->
+           <app-text-input [formControl]="(registerForm.controls['knownAs'])" 
+            [label]="'pseudo'"
+            ></app-text-input>
+
+
+          <!-- city and country  input -->
+          <div class="form-group d-flex flex-row mb-4">
+          
+           
+           <div class="col-5 me-4" >
+            <app-text-input [formControl]="(registerForm.controls['country'])" [label]="'country'"></app-text-input>
+           </div>
+
+           <div class="col-5">
+            <app-text-input [formControl]="(registerForm.controls['city'])" [label]="'city'"></app-text-input>
+           </div>
+           
+          
         </div>
+
+<!-- gender  input -->
+        <div class="form-outline mb-3">
+         <label style="margin-right:10px"> im a </label>
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input"   value="male" formControlName="gender"> Male
+          </label>
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input ms-4"  value="female" formControlName="gender"> Female
+          </label>
+        </div>
+
+
+        <!-- date input -->
+       <app-date-picker [formControl]="$any(registerForm.controls['DateOfBirth'])" [label]="'Date of birth ' " [maxDate]="maxDate"></app-date-picker>
+
+          <!-- Password input -->
+          <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'password'" [type]="'password'"></app-text-input>
+
+          <!-- confirm Password input -->
+          <div class="form-outline mb-3">
+            <input
+              type="password"
+              id="form3Example5"
+              formControlName="confirmPassword"
+              [class.is-invalid] ="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched"
+              class="form-control form-control-lg"
+              placeholder="confirm  password"
+            />
+            <label class="form-label" for="form3Example5"
+              >confirm Password</label
+            >
+          </div>
+
+          <div class="text-center">
+            <button [disabled]="!registerForm.valid" type="submit" class="btn btn-primary btn-lg me-4"
+          >
+              Register
+            </button>
+
+            <button (click)="cancel()" class="btn btn-danger btn-lg">
+              cancel
+            </button>
+
+          </div>
+          <p> form value {{registerForm.value|json}}</p>
+          <p> form status {{registerForm.status}}</p>
+        </form>
       </div>
     </div>
-   
-  </section>
+  </div>
+</section>

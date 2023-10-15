@@ -10,6 +10,7 @@ using SQLitePCL;
 namespace API.Controllers;
 
 [Authorize]
+[ServiceFilter(typeof(LogUserActivity))]
 public class UsersController : BaseApiController
 {
     private readonly IUserRepository _userRepository;
@@ -26,11 +27,21 @@ public class UsersController : BaseApiController
     }
 
     [HttpGet] //api/users
-    public async Task<ActionResult<IEnumerable<MemeberDto>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemeberDto>>> GetUsers([FromQuery]UserParams userParams )
     {
-        var users = await _userRepository.GetUsersAsync();
-        var usersToReturn = _mapper.Map<IEnumerable<MemeberDto>>(users);
-        return Ok(usersToReturn);
+        var currentUser=await _userRepository.GetUserByUserNameAsync(User.GetUsername()) ;
+        userParams.CurrentUsername=currentUser.UserName ;
+        if (string.IsNullOrEmpty(userParams.Gender)) {
+            userParams.Gender=currentUser.Gender=="male"? "female" :"male";
+        }
+
+        
+
+
+        var users = await _userRepository.GetMembersAsync(userParams);
+        Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage,users.PageSize,users.TotalCount,users.TotalePages)) ;
+        // var usersToReturn = _mapper.Map<IEnumerable<MemeberDto>>(users);
+        return Ok(users);
 
     }
 
@@ -39,8 +50,10 @@ public class UsersController : BaseApiController
 
     public async Task<ActionResult<MemeberDto>> GetUserByUserName(string username)
     {
-        var user = await _userRepository.GetUserByUserNameAsync(username);
-        return _mapper.Map<MemeberDto>(user);
+
+        return await _userRepository.GetMembersAsync(username) ;
+        // var user = await _userRepository.GetUserByUserNameAsync(username);
+        // return _mapper.Map<MemeberDto>(user);
 
 
     }
@@ -126,6 +139,13 @@ public class UsersController : BaseApiController
            var newmainphoto = user.Photos.FirstOrDefault(x=> x.ISMain==false) ; 
            newmainphoto.ISMain=true ;
            } 
+
+           if(photo.PublicId != null) {
+            var result =await _photoService.DeletePhotoAsync(photo.PublicId) ; 
+            if (result.Error != null) return BadRequest(result.Error.Message) ;  
+           }
+
+
            user.Photos.Remove(photo) ; 
             if(await _userRepository.SaveAllAsync()) return Ok() ;
             return BadRequest("something went wrong ") ;
