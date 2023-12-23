@@ -134,5 +134,15 @@ resetUserParams(){
   }
 
 
+ likeMember(username :string)
+ {
+    return this.http.post(this.baseUrl+'likes/'+ username,{})  ; 
+
+
+ }
+
+ getLikes(predicate:string) {
+  return this.http.get<Member[]>(this.baseUrl+'likes?predicate=' + predicate) ;  
+ }
  
 }

@@ -1,6 +1,6 @@
 ﻿namespace API;
 
-public class PaginationHeader
+public class PaginationHeader : PaginationParams 
 
 {
     public PaginationHeader(int currentPage ,int itemsPerPage ,int totalItems,int totalPages )
