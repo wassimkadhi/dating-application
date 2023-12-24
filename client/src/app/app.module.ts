@@ -44,7 +44,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     MemberEditComponent,
     PhotoEditorComponent,
     DatePickerComponent,
-    TextInputComponent
+    TextInputComponent,
   ],
   imports: [
     BrowserModule,

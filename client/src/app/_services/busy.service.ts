@@ -11,7 +11,6 @@ export class BusyService {
 
   busy() {
     this.count++;
-    console.log("hi im in the spinner") ;
     this.spinnerService.show(undefined, {
       bdColor: 'rgba(0, 0, 0, 0.8)',
       color: '#fff',

@@ -14,61 +14,48 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberListComponent implements OnInit {
   // members$: Observable<Member[]>
-  members:Member[] =[] ;
-  pagination:Pagination | undefined ;
-  userParams:UserParams | undefined ; 
+  members: Member[] = [];
+  pagination: Pagination| undefined;
+  userParams: UserParams | undefined;
 
-  genderList=[{value:'male' , display:'Males'} , {value:'female' ,display:'females'}] ;
- 
-  
-  constructor(private memberservice: MembersService  ) {
-    this.userParams=this.memberservice.getUserParams();
-     
+  genderList = [
+    { value: 'male', display: 'Males' },
+    { value: 'female', display: 'females' },
+  ];
 
+  constructor(private memberservice: MembersService) {
+    this.userParams = this.memberservice.getUserParams();
   }
   ngOnInit(): void {
     this.loadMembers();
-    
+
     // this.members$ = this.memberservice.getMembers();
   }
-  
-  loadMembers(){
-    if(this.userParams){
-      this.memberservice.setUserParams(this.userParams)
-      this.memberservice.getMembers(this.userParams).subscribe(
-        {
-          next:response=>{
-           if(response.result && response.pagination) {
-              this.members=response.result ; 
-              this.pagination=response.pagination ; 
-            }
+
+  loadMembers() {
+    if (this.userParams) {
+      this.memberservice.setUserParams(this.userParams);
+      this.memberservice.getMembers(this.userParams).subscribe({
+        next: (response) => {
+          if (response.result && response.pagination) {
+            this.members = response.result;
+            this.pagination = response.pagination;
           }
-        }
-      )
-
+        },
+      });
     }
-
-   
   }
-
 
   resetFilter() {
-    
-      this.userParams=this.memberservice.resetUserParams() ;
-      this.loadMembers() ;  
-
+    this.userParams = this.memberservice.resetUserParams();
+    this.loadMembers();
   }
 
-  pagechanged(event : any) {
-
-    if(this.userParams?.pageNumber != event.page){
-      this.userParams.pageNumber=event.page;
+  pagechanged(event: any) {
+    if (this.userParams?.pageNumber != event.page) {
+      this.userParams.pageNumber = event.page;
       this.memberservice.setUserParams(this.userParams);
-    this.loadMembers() ; 
+      this.loadMembers();
     }
-    
   }
-
-
-  
 }
