@@ -3,6 +3,8 @@ using System.Text;
 using System.Text.Json;
 using API.Data;
 using API.Entities;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API;
@@ -10,40 +12,50 @@ namespace API;
 public class Seed
 {
 
-    public static async Task SeedUsers(DataContext context)
+    public static async Task SeedUsers(UserManager<AppUser> userManager , RoleManager<AppRole> rolemanager)
     {
 
-        if (await context.Users.AnyAsync()) return;
+        if (await userManager.Users.AnyAsync()) return;
 
         var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+        var roles = new List<AppRole>{
+            new AppRole {Name="Member"},
+            new AppRole {Name="Admin"},
+            new AppRole {Name="Moderator"},
+        } ;
+
+        foreach(var role in roles) 
+        {
+            await rolemanager.CreateAsync(role) ;
+
+        }
 
         foreach (var user in users)
         {
 
-            using var hmac = new HMACSHA512();
-
             user.UserName = user.UserName.ToLower();
-            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("academie"));
-            user.PasswordSalt = hmac.Key;
+            await userManager.CreateAsync(user, "academie");
+            await userManager.AddToRoleAsync(user,"Member");
 
-            context.Users.Add(user);
 
         }
 
-        await context.SaveChangesAsync();
+        var admin= new AppUser{
+            UserName="admin"
+        } ;
+
+        await userManager.CreateAsync(admin, "academie") ;
+        await userManager.AddToRolesAsync(admin , new[]{"Admin","Moderator"}) ;
+
+
 
     }
 
 
 
-
-
-
-
-
-
 }
+
 
 

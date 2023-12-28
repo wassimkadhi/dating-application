@@ -1,0 +1,15 @@
+
+<div class="col-8">
+  <tabset  class ="member-tabset"  >
+     <tab heading ="Editting Users Roles" *appHasRole="['Admin']" >
+      <app-editting-user-role  [users]="users"></app-editting-user-role>
+     
+    </tab>
+    <tab  heading ="Photos Moderating"  *appHasRole="['Admin','Moderator']"> 
+     <p>djhdsf</p>
+    </tab>
+
+
+  </tabset>
+  
+</div>

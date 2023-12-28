@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpInterceptor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { User } from '../_models/user';
@@ -40,13 +40,24 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    user.roles=[] ;
+    const roles=this.getDecodedToken(user.token).role ;
+    Array.isArray(roles)? user.roles=roles:user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-    console.log(user) ;
+    console.log("this is the current" +user) ;
   }
 
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+
+
+  getDecodedToken(token :string){ 
+
+    return JSON.parse(atob(token.split('.')[1]))
+
   }
 }

@@ -55,12 +55,12 @@
     </div>
 
 
-    <div class="row" *ngIf=" members.length==0 && predicate=='likedBy'">
+    <div class="row" *ngIf=" members?.length==0 && predicate=='likedBy'">
       <h5 style="text-align: center; padding-top: 50px;"> no one like you yet</h5>
     </div>
     
 
-    <div class="row" *ngIf=" members.length==0 && predicate=='liked'">
+    <div class="row" *ngIf=" members?.length==0 && predicate=='liked'">
       <h5 style="text-align: center; padding-top: 50px;"> you didnot like any one</h5>
     </div>
     

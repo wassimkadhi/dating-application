@@ -46,6 +46,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             const navigationExtras : NavigationExtras ={state:{error:error.error}} ; 
             this.router.navigateByUrl('/server-error' ,navigationExtras) ; 
             break;
+            case 403 : 
+            
+            this.toastr.error('some resources are limited for you')
+            break ; 
             default : 
             this.toastr.error('somthing unspected occured' ) ; 
             console.log(error) ; 

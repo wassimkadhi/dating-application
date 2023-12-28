@@ -26,6 +26,12 @@ import { DatePickerComponent } from './_forms/date-picker/date-picker.component'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { EdittingUserRoleComponent } from './admin/editting-user-role/editting-user-role.component';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+
+
 
 
 @NgModule({
@@ -45,6 +51,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     PhotoEditorComponent,
     DatePickerComponent,
     TextInputComponent,
+    AdminPanelComponent,
+    HasRoleDirective,
+    EdittingUserRoleComponent,
+    RolesModalComponent,
+  
   ],
   imports: [
     BrowserModule,
