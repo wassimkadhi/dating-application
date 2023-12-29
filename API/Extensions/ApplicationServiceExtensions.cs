@@ -29,9 +29,8 @@ public static class ApplicationServiceExtensions
     services.AddScoped<IPhotoService , PhotoService>() ; 
     services.AddScoped<LogUserActivity>() ; 
     services.AddScoped<IMessageRepository,MessageRepositoy>() ; 
-
-
+    services.AddSignalR() ;
+    services.AddSingleton<presenceTracker>() ;
     return services;
-
   }
 }

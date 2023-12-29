@@ -7,6 +7,10 @@
 
         <img   class="card-img-top img-thumbnail" src="{{member.urlPhoto|| './assets/user.png'}}" alt="wrong.">
         <div class="card-body">
+          <div class="mb-2" *ngIf="(presenceService.onlineUsers$|async)?.includes(member.userName)">
+            <i class="class fa fa-user-circle text-success"></i> online now
+          </div>
+
           <h5 class="card-title">{{member.knownAs}}</h5>
     
            <strong> Age of </strong>
