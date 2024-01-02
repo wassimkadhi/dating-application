@@ -32,6 +32,7 @@ import { EdittingUserRoleComponent } from './admin/editting-user-role/editting-u
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './_services/customRouteReuseStrategey';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -57,6 +58,7 @@ import { CustomRouteReuseStrategy } from './_services/customRouteReuseStrategey'
     HasRoleDirective,
     EdittingUserRoleComponent,
     RolesModalComponent,
+    ConfirmDialogComponent,
   
   ],
   imports: [

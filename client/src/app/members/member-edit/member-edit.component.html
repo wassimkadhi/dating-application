@@ -36,27 +36,28 @@
         <tab heading="genarale Informations">
           <form #editForm="ngForm" (ngSubmit)="updateMember()">
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="introduction" class="col-sm-2 col-form-label"
                 >Your Introduction</label
               >
               <div class="col-sm-10">
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                 
                   rows="3"
                   [(ngModel)]="member.introduction"
                   name="introduction"
+                  
                 ></textarea>
               </div>
             </div>
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="lookingfor" class="col-sm-2 col-form-label"
                 >What are you looking for</label
               >
               <div class="col-sm-10">
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                 
                   rows="3"
                   [(ngModel)]="member.lookingFor"
                   name="lookingFor"
@@ -65,13 +66,13 @@
             </div>
 
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="interests" class="col-sm-2 col-form-label"
                 >What are you interested about</label
               >
               <div class="col-sm-10">
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
+                 
                   rows="3"
                   [(ngModel)]="member.interests"
                   name="interests"
@@ -79,7 +80,7 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="city" class="col-sm-2 col-form-label"
                 >city</label
               >
               <div class="col-md-4">
@@ -91,7 +92,7 @@
                   name="city"
                 />
               </div>
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="country" class="col-sm-2 col-form-label"
                 >country</label
               >
               <div class="col-md-4">

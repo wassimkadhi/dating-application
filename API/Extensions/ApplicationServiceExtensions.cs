@@ -21,16 +21,14 @@ public static class ApplicationServiceExtensions
 );
     services.AddCors();
     //  adding our own service  
-    services.AddScoped<ITokenService, TokenService>();
-    services.AddScoped<IUserRepository , UserRepository>() ; 
-    services.AddScoped<ILikesRepository,LikesReposiory>();
+    services.AddScoped<ITokenService, TokenService>();  
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()) ;
     services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings")) ; 
     services.AddScoped<IPhotoService , PhotoService>() ; 
-    services.AddScoped<LogUserActivity>() ; 
-    services.AddScoped<IMessageRepository,MessageRepositoy>() ; 
+    services.AddScoped<LogUserActivity>() ;  
     services.AddSignalR() ;
     services.AddSingleton<presenceTracker>() ;
+    services.AddScoped<IUnitOfWorck,UnitOfWork>() ;
     return services;
   }
 }

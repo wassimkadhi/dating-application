@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
       next: (response) => {
        
         this.router.navigateByUrl('/members');
+        this.model={};
       },
     });
   }

@@ -36,11 +36,6 @@ public class UserRepository : IUserRepository
 
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync()>0;
-    }
-
     public void UpadteUser(AppUser user)
     {
         _context.Entry(user).State = EntityState.Modified;
@@ -84,6 +79,11 @@ public class UserRepository : IUserRepository
     {
        return await _context.Users.Where(x=>x.UserName==username)
         .ProjectTo<MemeberDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+    }
+
+    public async Task<string> GetUserGender(string username)
+    {
+      return await _context.Users.Where(x=> x.UserName==username).Select(x=> x.Gender).FirstOrDefaultAsync() ;
     }
 }
 
