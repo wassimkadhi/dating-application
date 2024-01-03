@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { take } from 'rxjs';
 import { User } from '../_models/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { User } from '../_models/user';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  baseUrl =environment.apiUrl ; 
   user: User;
   registerMode = false;
   users: any;
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
+    this.http.get(this.baseUrl+'users').subscribe({
       next: (Response) => (this.users = Response),
       error: (error) => console.log(error),
       complete: () => console.log('req completed'),
