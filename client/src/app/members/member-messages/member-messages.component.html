@@ -1,16 +1,15 @@
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body"
+    #scrollme
+    style="overflow:scroll; height: 535px"
+    [scrollTop]="scrollme.scrollHeight"
+    >
         <div *ngIf="(messageService.messageThread$|async)?.length ===0">
              <h1>no dusction made yet</h1>
         </div>
 
-        <ul 
-        #scrollme
-        style="overflow: scroll; height:500px"
-        [scrollTop]="scrollme.scrollHeight"
-        
-        
+        <ul         
         *ngIf="(messageService.messageThread$|async)?.length>0" class="chat">
 
             <li *ngFor="let message of (messageService.messageThread$|async)">

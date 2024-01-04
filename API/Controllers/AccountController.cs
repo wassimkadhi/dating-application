@@ -68,8 +68,6 @@ public class AccountController : BaseApiController
          KnownAs=user.KnownAs ,
          Gender=user.Gender
       };
-
-
    }
 
 

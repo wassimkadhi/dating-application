@@ -39,7 +39,7 @@
             <a class="dropdown-item"  routerLink="/member/edit">Edit profil</a>
             <a class="dropdown-item" (click)="logout()">logout</a>
           </div>
-
+          
         </div>
         <form  *ngIf=!(accountservice.currentUser$|async) #loginform ="ngForm"  class="d-flex" (ngSubmit)="login()" autocomplete="off">
           <input

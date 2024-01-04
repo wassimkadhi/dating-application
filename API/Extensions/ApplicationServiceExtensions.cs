@@ -13,12 +13,6 @@ public static class ApplicationServiceExtensions
 
     // Add services to the container.
 
-
-    services.AddDbContext<DataContext>(opt =>
-{
-  opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-}
-);
     services.AddCors();
     //  adding our own service  
     services.AddScoped<ITokenService, TokenService>();  

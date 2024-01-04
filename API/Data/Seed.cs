@@ -36,6 +36,8 @@ public class Seed
         {
 
             user.UserName = user.UserName.ToLower();
+            user.Cretaed=DateTime.SpecifyKind(user.Cretaed,DateTimeKind.Utc) ;
+             user.LastActive=DateTime.SpecifyKind(user.LastActive,DateTimeKind.Utc) ;
             await userManager.CreateAsync(user, "academie");
             await userManager.AddToRoleAsync(user,"Member");
 
