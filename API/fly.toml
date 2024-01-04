@@ -6,7 +6,6 @@
 app = "dating"
 primary_region = "ams"
 
-[build]
 
 [env]
 ASPNETCORE_URLS="http://+:8080"
