@@ -4,6 +4,4 @@
 **/out/
 
 # files
-fly.toml
-Dockerfile*
 **/*.md
