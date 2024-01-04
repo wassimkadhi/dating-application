@@ -13,7 +13,6 @@ CloudinarySettings__CloudName="dq8cmcdrd"
 CloudinarySettings__ApiKey="375264969958448" 
 
 [build]
-dockerfile="Dockerfile"
 
 [http_service]
   internal_port = 8080
